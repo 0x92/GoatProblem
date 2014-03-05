@@ -1,6 +1,6 @@
 { ##############################################################
   ## Modul:     GoatProblem
-  ## Author:    0x92
+  ## Author:    0x92; coolmen1994
   ## Release:   05.03.2014
   ## Contact:   0x92dev@gmail.com | https://github.com/0x92
   ## -----------------------------------------------------------
@@ -30,11 +30,12 @@ begin
     Randomize;
     Doorcount  := 0;
     RandomDoor := 0;
-    WriteLn('How much doors should we use for our experiment?');
+    WriteLn('How many doors should be used for your experiment?');
 
     while Doorcount <= 2 do
     begin
-      WriteLn('### NOTE: Please use a higher value than 2!');
+      WriteLn;
+      Write('# NOTE: Please use a higher value than 2!    ');
       ReadLn(Doorcount);
     end;
 
@@ -49,19 +50,23 @@ begin
     Doors[WinPosition] := 1;           //Gewinn wird auf eine Tür verteilt
 
     //Nächster Schritt abfragen welche tür genommen werden soll
-    WriteLn('Please submit a door number between 1 and ' + IntToStr(Doorcount) + '.');
+    WriteLn;
+    Write('Please submit a door number between 1 and ' + IntToStr(Doorcount) + '. ');
     ReadLn(SelectedDoor); // SelectedDoor = Die Tür welche ausgewählt wurde
-    WriteLn('You have selected door number ' + IntToStr(SelectedDoor) + '.');
+    WriteLn;
+    WriteLn('You selected door number ' + IntToStr(SelectedDoor) + '.');
 
     while RandomDoor = SelectedDoor {and (RandomDoor = WinPosition)} do   //Solange die Zufallstür die ausgewählte/Gewinn Tür ist nochmal neu generieren
     begin
       RandomDoor := Random(Doorcount);
     end;
 
-    WriteLn('I will show you another door.');
+    WriteLn('I will show you one goatdoor!');
 
     if Doors[RandomDoor] = 0 then
       WriteLn('Door number: ' + IntToStr(RandomDoor +1) + ' Ohhh, it is a goat! ;O');
+      WriteLn('Do you want to change your door?');
+      WriteLn;
 
       if Doors[RandomDoor] = 1 then
         WriteLn('Door number: ' + IntToStr(RandomDoor +1) + ' *Dafuq, there is the price!*');
@@ -73,7 +78,7 @@ begin
 
     while not (Decision = 'Y') and not (Decision = 'y') and not (Decision = 'N') and not (Decision = 'n') do
     begin
-      WriteLn(' ### NOTE: Only Y/y or N/n accepted');
+      WriteLn('# NOTE: Only Y/y or N/n accepted');
       ReadLn(Decision);
     end;
 
